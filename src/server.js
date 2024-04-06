@@ -5,8 +5,6 @@ import database from "./infra/database.js";
 
 expand(config());
 
-const PORT = process.env.PORT || 3000;
-
 const fastify = Fastify({ logger: true });
 
 fastify.get("/", async (request, reply) => {
@@ -46,7 +44,7 @@ fastify.get("/v1/status", async (request, reply) => {
 });
 
 try {
-  await fastify.listen({ port: 3000 });
+  await fastify.listen({ port: process.env.PORT || 3000 });
 } catch (error) {
   fastify.log.error(error);
   process.exit(1);
