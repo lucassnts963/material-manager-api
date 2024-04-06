@@ -7,7 +7,13 @@
   "author": "Lucas Santos <lucassnts963@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/server.js",
+    "service:up": "docker compose -f src/infra/compose.yaml up -d",
+    "service:down": "docker compose -f src/infra/compose.yaml down",
+    "service:stop": "docker compose -f src/infra/compose.yaml stop",
+    "dev": "npm run service:up && nodemon src/server.js",
+    "start": "node src/server.js",
+    "lint:check": "prettier --check .",
+    "lint:fix": "prettier --write .",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
@@ -16,6 +22,7 @@
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5"
   }
 }
