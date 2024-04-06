@@ -43,9 +43,15 @@ fastify.get("/v1/status", async (request, reply) => {
   });
 });
 
-try {
-  await fastify.listen({ port: process.env.PORT || 3000 });
-} catch (error) {
-  fastify.log.error(error);
-  process.exit(1);
+async function start() {
+  try {
+    await fastify.listen({ port: process.env.PORT || 3000 });
+  } catch (error) {
+    fastify.log.error(error);
+    process.exit(1);
+  }
 }
+
+export default {
+  start,
+};
