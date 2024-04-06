@@ -6,7 +6,7 @@ async function query(objectQuery) {
   let client;
 
   try {
-    client = getNewClient();
+    client = await getNewClient();
 
     const result = await client.query(objectQuery);
 
